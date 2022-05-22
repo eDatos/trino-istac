@@ -111,6 +111,15 @@
 						</p>
 					</div>
 					<a class="fragment" style="font-size: 0.75em;" href="https://edatos.github.io/trino-istac/">https://edatos.github.io/trino-istac/.</a>
+					<aside class="notes">
+						<ol style="font-size: 0.75em;">
+							<li>Bienvenidos a todos. Gracias por asistir a esta charla sobre Trino, enmarcada dentro de la línea de sesiones técnicas que organiza habitualmente el ISTAC.</li>
+							<li>Para el registro, mi nombre es Miguel Núñez de la empresa Ecosistemas Virtuales y Modulares (EVM), soy informático y actualmente estoy desarrollando labores de soporte informático para el ISTAC.</li>
+							<li>La presentación está disponible en la url que les paso por el chat (https://m-nunez.github.io/trino-istac/)</li>
+							<li>Quiero aclarar que no soy un experto en Trino. Esta es mi primera toma de contacto, y la intención es compartir con ustedes mis descubrimientos.</li>
+							<li>Intentaré no aburrir demasiado. Si lo desean, me pueden interrumpir en cualquier momento.</li>
+						</ol>
+					</aside>
 				</section>
 
 <!-- INTRODUCCION -->
@@ -123,6 +132,16 @@
 					<li>Pruebas realizadas</li>
 					<li>Conclusiones</li>
 				  </ol>
+					<aside class="notes">
+						<div style="font-size: 0.75em;">
+							<p>Empezaremos por dar una breve introducción para saber de qué vamos a hablar.</p>
+							<p>Veremos unos conceptos teóricos básicos sobre la materia.</p>
+							<p>Luego pasaremos a detallar las principales funcionalidades de Trino.</p>
+							<p>También explicaremos cómo se instala Trino y unas notas sobre su configuración.</p>
+							<p>Mostraremos algunas pruebas que se han realizado.</p>
+							<p>Y acabaremos con las conclusiones que he extraído.</p>
+						</div>
+					</aside>
 				</section>
 
 				<section>
@@ -137,6 +156,16 @@
 							<li class="fragment" _data-fragment-index="2">Diseñado para un rendimiento óptimo y escalable.</li>
 							<li class="fragment" _data-fragment-index="3" style="color:red">No es una base de datos: no almacena datos.</li>
 						</ul>
+					<aside class="notes">
+						<div style="font-size: 0.75em;">
+							<p>Características:</p>
+							<ol>
+								<li>Por diseño, se evita la copia innecesaria de datos y se maximiza el paralelismo.</li>
+								<li>Preparado para Big Data, Machine Learning y AI.</li>
+								<li>Diseñado para gestionar eficientemente consultar grandes cantidades de datos mediante queries distribuidas y para análisis de datos (OLAP, OnLine Analytical Processing).</li>
+							</ol>
+						</div>
+					</aside>
 				</section>
 				
 				<section>
@@ -157,6 +186,19 @@
 						</div>
 						<img class="top framed fragment" src="img/memes/suatmm.gif" />
 					</div>
+					<aside class="notes">
+						<ol style="font-size: 0.75em;">
+							<li><b>Velocidad</b>: El procesador SQL tiene un alto nivel de paralelismo y ejecución distribuida.</li>
+							<li><b>Escalado</b>: Trabaja con los mayores bancos de datos</li>
+							<li><b>Simplicidad</b>: SQL ANSI que funciona con las herramientas BI más famosas (R, Tableau, Power BI, Superset, etc.).</li>
+							<li><b>Versatilidad</b>: Queries analíticas interactivas, queries batch masivas y apps que hacen consultas sobre grandes conjuntos de datos.</li>
+							<li><b>Análisis in-situ</b>: No es necesario copiar los datos a bases de datos secundarias para realizar estas consultas.</li>
+							<li><b>Query federation</b>: Accede a datos de múltiples fuentes en una única query.</li>
+							<li><b>Funciona en cualquier lugar</b>: Disponible on-premise y en entornos cloud (Amazon, Azure, Google Cloud, etc).</li>
+							<li><b>Confiable</b>: Usado en operaciones críticas a lo largo de todo el mundo.</li>
+							<li><b>Abierto</b>: Es un projecto open-source de la fundación Trino Software Foundation.</li>
+						</ol>
+					</aside>
 				</section>
 
 				<section>
@@ -166,11 +208,24 @@
 						<li><span>En 2013 se liberó con licencia Apache.</span></li>
 						<li><span>La versión más reciente es la v380 (6/5/22).</span></li>
 					</ul>
+					<aside class="notes">
+					<ol style="font-size: 0.75em;">
+						<li>Comenzó siendo el proyecto Presto en Facebook en 2012 por cuatro desarrolladores (Martin Traverso, Dain Sundstrom, David Phillips y Eric Hwang) como alternativa al lento Hive (curiosamente Trino cuenta con un conector Hive que sólo reemplaza el componente SQL HiveQL) usado sobre Hadoop (HDFS) para permitir a los analistas de datos lanzar consultas interactivas sobre los ingentes datos de Facebook (300 PB).</li>
+						<li>En 2013 se liberó con licencia Apache, en 2019 se creó la fundación Presto Software Foundation y a finales de 2020 se renombró como Trino.</li>
+						<li>Actualmente es un proyecto Opensource muy activo, respaldado por la compañía Starburst.</li>
+					</ol>
+					</aside>
 				</section>
 				
 				<section>
 					<h4>¿Quién usa Trino?</h4>
 					<img class="w70" src="img/Trino-usuarios.png" />
+					<aside class="notes">
+						<ol style="font-size: 0.75em;">
+							<li>En su desarrollo hay involucrada gente de muchas compañías: Amazon, Bloomberg, Eventbrite, Gett, Google, Line, LinkedIn, Lyft, Netflix, Pinterest, Qubole, Red Hat, Salesforce, Shopify, Starburst, Treasure Data, Varada, Zuora, etc.</li>
+							<li>Algunas empresas que usan Trino: AWS, LinkedIn, NTT Communications, DiDi… (muchas del tercer mundo).</li>
+						</ol>
+					</aside>
 				</section>
 				
 				<section>
@@ -188,6 +243,18 @@
 							</div>
 						</li>
 					</ul>
+					<aside class="notes">
+						<ul style="font-size: 0.75em;">
+							<li>Aunque puede ejecutarse en un único servidor, Trino está pensado para funcionar en modo cluster.</li>
+							<li> Existen con los siguientes tipos de nodos:
+								<ol>
+									<li><strong>Coordinator</strong>: Es el cerebro del sistema, parsea las queries, las planifica y se encarga del control de los nodos workers. Este nodo recoge los resultados desde los nodos workers y devolver al cliente la respuesta final. Debe existir al menos uno aunque puede haber varios.</li>
+									<li><strong>Worker</strong>: Es responsable de llevar a cabo las tareas asignadas por el nodo coordinador, recogiendo los datos desde los connectors e intercambiadolos con otros nodos workers. Puede haber uno o más nodos workers que se registrarán durante su arranque en el nodo coordinador.</li>
+								</ol>
+							</li>
+							<li>Los nodos se comunican entre sí mediante REST API.</li>
+						</ul>
+					</aside>
 				</section>
 				
 				<section>
@@ -205,10 +272,26 @@
 							<li class="fragment"><strong>Schema</strong>: Organización de las tablas de datos.</li>
 							<li class="fragment"><strong>Table</strong>: Grupo de registros.</li>
 						</ol>
+						<aside class="notes">
+							<ol style="font-size: 0.75em;">
+								<li><strong>Connector</strong>: Hace las veces de interfaz entre un determinado sistema de datos y Trino permitiendo un manejo estandarizado. Se implementan siguiendo un modelo extensible Java SPI (Service Provider Interface). Trino viene con muchos conectores preinstalados: JMX, System, Hive, TPCH, etc.</li>
+								<li><strong>Catalog</strong>: Está asociado a una determinada fuente de datos y contiene la información sobre los esquemas. En el fichero de configuración de cada catalog, se indica el connector a usar mediante la propiedad connector.name. El nombre del catalog se usa como raíz de los nombres completos de los elementos como tablas, índices, etc.</li>
+								<li><strong>Schema</strong>: Junto con los catalogs, es una forma de organizar las tablas de datos. En las BBDD relacionales, se corresponden con los esquemas de éstas pero en otro tipo de BBDD pueden seguir otras estrategias.</li>
+								<li><strong>Table</strong>: Es un grupo de registros desordenados, estructurados en columnas con sus respectivos tipos. En las BBDD relacionales, se corresponden con las tablas de éstas pero en otro tipo de BBDD pueden seguir otras estrategias.</li>
+							</ol>
+						</aside>
 					</section>
 					<section>
 						<p style="font-size: 0.65em;">Comparativa entre distintos sistemas</p>
 						<img class="top framed" src="img/Trino-containment-hierarchy.png" />
+						<aside class="notes">
+							<ol style="font-size: 0.75em;">
+								<li><strong>Mongo</strong>: Ejemplo de base de datos NoSQL orientada a objetos donde cada objeto se almacena como un documento separado.</li>
+								<li><strong>Apache Pinot</strong>: Es un ejemplo de base de datos columnar con almacenamiento distribuido.</li>
+								<li><strong>MySQL</strong>: Ejemplo de base de datos relacional (RDBMS) propiedad de Oracle.</li>
+								<li><strong>Elasticsearch</strong>: Es una base de datos NoSQL orienta a objetos de tipo pares clave-valor.</li>
+							</ol>
+						</aside>
 					</section>
 				</section>
 				
@@ -225,6 +308,22 @@
 							<li class="fragment"><strong>Operator</strong>: Operadores</li>
 							<li class="fragment"><strong>Otros</strong>: Exchange, Split</li>
 						</ol>
+						<aside class="notes">
+						<ol style="font-size: 0.65em;">
+							<li><strong>Statement</strong>: son las instrucciones SQL-ANSI que admite el Trino, tal y como se reciben del cliente.</li>
+							<li><strong>Query</strong>: Es una colección de stages, tasks, splits, connectors y otros elementos trabajando sobre un conjunto de fuentes de datos para producir un resultado. Se crea al parsear un statement, generandose un plan de ejecución distribuida que se llevará a cabo mediante una serie de stages interconectados.</li>
+							<li><strong>Stage</strong>: Son los diferentes pasos organizados jerárquicamente (árbol) en que se descompone una query, formando el plan de ejecución distribuida. Cada stage recoge los resultados de sus descendientes directos y los pasa a su ancestro. Los stage se ejecutan en paralelo en el nodo coordinador y generan una serie de tasks que se distribuyen en la red de nodos workers.</li>
+							<li><strong>Task</strong>: Son procesos que toman entradas y generan salidas. Igual que las stages, pueden ser ejecutados en paralelo.</li>
+							<li><strong>Driver</strong>: Las tasks se descomponen en múltiples drivers que procesan en paralelo datos en memoria usando operators. Son los componentes que más abajo están en el planning de la query.</li>
+							<li><strong>Operator</strong>: Consume y transforma datos. Algunos operators recuperan datos de un conector, otros filtran datos según un predicado, etc.</li>
+							<li><strong>Otros</strong>:
+								<ul>
+									<li><strong>Exchange</strong>: Se encargan de mover los datos de un buffer a otro de las distintas tasks.</li>
+									<li><strong>Split</strong>: Son las secciones, de un conjunto de datos más extenso, que son recuperados desde un connector (nivel más bajo del planning de la query) o desde stages.</li>
+								</ul>
+							</li>
+						</ol>
+						</aside>
 					</section>
 					<section>
 						<img class="top framed" src="img/pantallazos/p007.png" />
@@ -257,6 +356,26 @@
 								<li class="fragment">No permite lanzar queries</li>
 								<li class="fragment">No muestra los datos resultantes</li>
 							</ul>
+						<aside class="notes">
+							<div style="font-size: 0.75em;">
+								<ul>
+									<li>No se puede:
+										<ul>
+											<li>Bloquear el Web UI para un usuario determinado.</li>
+										</ul>
+									</i>
+									<li>Se puede:
+										<ul>
+											<li>Desactivar completamente el Web UI.</li>
+											<li>Fijar el usuario del Web UI de forma que no se necesite introducir credenciales.<br/>
+											Se puede controlar los accesos de este usuario mediante la configuración.</li>
+											<li>Por defecto, todos los usuarios ven las queries de todos. Se puede modificar este comportamiento en la configuración.</li>
+										</ul>
+									</i>
+								</ul>
+								<p>No permite bloquear el acceso a un usuario concreto al interfaz web.</p>
+							</div>
+						</aside>
 					</section>
 					<section>
 						<!-- Imagen #1 -->
@@ -295,6 +414,17 @@
 						<li class="fragment"><b>Comunicaciones seguras</b></li>
 						<li class="fragment"><b>Extensible</b></li>
 					</ol>
+					<aside class="notes">
+					<ol style="font-size: 0.75em;">
+						<li><b>Autenticación</b>: Password file, LDAP, Salesforce, OAuth 2.0, Certificate, JSON Web Token (JWT) y Kerberos.</li>
+						<li><b>Tip</b>: Permite la autenticación LDAP sobre múltiples ramas del DA. Permite autorización de acceso en función de membresías a grupos del DA (y posiblemente otras expresiones LDAP).</li>
+						<li>El interface con el usuario es mínimo por lo que no requiere más sistemas de autenticación.</li>
+						<li><b>Autorización</b>: Se puede controlar el acceso de los usuarios a los recursos de forma muy selectiva. Permite agrupar a los usuarios para facilitar la gestión de los permisos.</li>
+						<li><b>Clientes</b>: Trino JDBC driver for Java/JVM, Starburst ODBC driver for Windows, trino-go-client for Go, presto-client-node for Node.js, lento for Node.js, dbt adapter, trino-python-client for Python, PyHive for Python, RPresto for R, trino-client-ruby for Ruby.</li>
+						<li><b>Seguridad</b>: Es posible securizar con TLS las conexiones entre los nodos y con los clientes. El nodo coordinador dispone de un interfaz web HTTP que permite lanzar queries y muchas otras operaciones. El cliente JDBC usa internamente este interfaz.</li>
+						<li><b>Extensible</b>: Altamente adaptable. Dispone de SPI (Service Provider Interface, tecnología java) para modificar controladores, extender o agregar distintos componentes software. También se puede señalizar eventos a herramientas externas mediante llamadas HTTP/S POST con información en JSON.</li>
+					</ol>
+					</aside>
 				</section>
 				
 				<section>
@@ -315,6 +445,25 @@
 								</ul>
 							</li>
 						</ol>
+						<aside class="notes">
+							<ol style="font-size: 0.55em;">
+								<li><b>Quotas</b>: Se pueden poner quotas al uso de recursos. Se encolan queries en función de la disponibilidad de recursos.</li>
+								<li><b>SQL</b>: Dispone de una cantidad importante (723) de funciones SQL incluídas propias de todo tipo (manejo de arrays, geospaciales, de soporte de dialectos SQL específicos como Teradata SQL, de información del sistema, machine learning, etc.).</li>
+								<li><b>Connectors</b>:
+									<ul>
+										<li><b>TPCDS</b>: (TPC Benmark DS) conector de sólo lectura para realizar pruebas de rendimiento estandarizadas.</li>
+										<li><b>TPCH</b>: (TPC Benmark H) conector de sólo lectura para realizar pruebas de rendimiento estandarizadas.</li>
+										<li><b>JMX</b>: conector de sólo lectura para una fácil monitorización avanzada del sistema completo mediante métricas JMX (Java Management) usando utilidades (jconsole, VisualVM, etc.) así como con queries SQL.</br>
+										Expone datos históricos, agregados y actuales y puede desactivarse y/o controlarse el acceso usando reglas sobre el catálogo jmx.</br>
+										Con SQL, se puede consultar las métricas actuales usando el schema <i>current</i> (por ejemplo, el número de ficheros abiertos en cada nodo SELECT openfiledescriptorcount FROM jmx.current."java.lang:type=operatingsystem";) ó consultar historiales almacenados en memoria usando el schema <i>history</i> de aquellas métricas que se hayan configurado en las propiedades del catálogo (fichero <i>jmx.properties</i>).</li>
+										<li><b>SYSTEM</b>: conector de sólo lectura para obtener distinta información y métricas del sistema mediante queries SQL.</li>
+										<li><b>MEMORY</b>: conector de escritura limitada (básicamente sólo se permite la insersión y el borrado completo de tablas).</br>Es un conector especial que reside en la memoria RAM de los nodos workers y que sirve para acelerar queries, almacenando temporalmente datos traídos desde fuentes externas.</br>El contenido de este conector se pierde al reiniciar Trino.</li>
+										<li><b>BLACK HOLE</b>: Similar al dispositivo /dev/null de Linux, todo lo que se manda allí desaparece.</br>Útil para hacer pruebas de rendimiento.</li>
+										<li><b>Otros</b>: Y muchísimos más...</li>
+									</ul>
+								</li>
+							</ol>
+						</aside>
 					</section>
 					<section>
 						<h4>Ejemplo - Consulta de métrica</h4>
@@ -356,6 +505,14 @@ Splits: 6 total, 6 done (100,00%)
 							<li class="fragment"><strong>Virtual Data Warehouse</strong>: Almacenamiento homogéneo.</li>
 							<li class="fragment"><strong>Procesamiento/Almacenamiento</strong>: Aisla los recursos usados por las queries de los usados por el almacenamiento.</li>
 						</ol>
+						<aside class="notes">
+							<ol style="font-size: 0.65em;">
+								<li><strong>SQL-on-Anything</strong>: Provee acceso usando un SQL estandarizado a muchos tipos de sistemas de datos: Distributed Object Storage, RDBMS, NoSQL, etc. Evitando las ETLs para cargar en sistemas intermedios.</li>
+								<li><strong>Federated Query</strong>: Soporta queries que referencien distintas fuentes de datos en un sólo comando.</li>
+								<li><strong>Virtual Data Warehouse</strong>: Muestra un almacenamiento de datos uniforme, ocultando las particularidades de cada uno de los sistemas que contienen los datos reales. Soporta el uso de sistemas de datos masivos en la nube (raw Data Lakes como HDFS y AWS S3). Amazon ha usado Presto en su Amazon Athena para que los usuarios puedan hacer consultas SQL interactivas sobre su sistema de datos Amazon S3.</li>
+								<li><strong>Procesamiento/Almacenamiento</strong>: Separa los recursos de almacenamiento de datos de los de procesado de queries, permitiendo un escalado más fácil. Se puede escalar el almacenamiento cuando sea necesario sin necesidad de cambiar los recursos usados en el procesado de las queries. Igualmente, se puede incrementar los recursos de procesado cuando las queries se vayan complicando sin necesidad de cambiar el almacenamiento de datos.</li>
+							</ol>
+						</aside>
 					</section>
 					<section>
 						<p style="font-size: 0.65em;">Tipos de Bases de Datos</p>
@@ -374,10 +531,27 @@ Splits: 6 total, 6 done (100,00%)
 							<li></li>
 							<li></li>
 						</ul>
+						<aside class="notes">
+							<ol style="font-size: 0.65em;">
+								<li><strong></strong>: .</li>
+								<li><strong></strong>: .</li>
+								<li><strong></strong>: .</li>
+								<li><strong></strong>: .</li>
+								<li><strong></strong>: .</li>
+							</ol>
+						</aside>
 					</section>
 					<section>
 						<p style="font-size: 0.65em;">Tipos de Bases de Datos NoSQL</p>
 						<img class="top framed" src="img/types-of-databases3.png" />
+						<aside class="notes">
+							<ol style="font-size: 0.65em;">
+								<li><strong>Key-value storage</strong>: Es la más simple de las bases de datos NoSQL. Cada elemento tiene un atributo nombre (key) y conserva un valor.</li>
+								<li><strong>Document-oriented Database</strong>: Almacena datos como documentos JSON. Tiene la ventaja de usar el mismo formato que los usados en las aplicaciones.</li>
+								<li><strong>Graph Databases</strong>: Usadas para almacenar grandes volúmenes de datos en una estructura de grafo. Muy usada en las web de las redes sociales.</li>
+								<li><strong>Wide-column stores</strong>: Parecida a las bases de datos relacionales pero los datos correspondientes a cada columna se almacenan juntos en vez de por filas.</li>
+							</ol>
+						</aside>
 					</section>
 				</section>
 				
@@ -404,6 +578,24 @@ Splits: 6 total, 6 done (100,00%)
 								</ul>
 							</li>
 						</ol>
+						<aside class="notes">
+							<ol style="font-size: 0.65em;">
+								<li>Trino utiliza información estadística de las tablas para optimizar las queries. Esta información la proporcionan los connectors y el nivel de disponibilidad varía de uno a otro.</li>
+								<li>Los datos estadísticos usados son los siguientes:
+									<ul>
+										<li><b>Tabla</b>: Row count == Número de filas de la tabla</li>
+										<li><b>Columna</b>: Data size == tamaño del dato que debe ser leído</li>
+										<li><b>Columna</b>: Nulls Fractino == porcentaje de valores nulos</li>
+										<li><b>Columna</b>: Distinct value count == número de valores diferentes</li>
+										<li><b>Columna</b>: Low value == el valor mínimo</li>
+										<li><b>Columna</b>: High value == el valor máximo</li>
+									</ul>
+								</li>
+								<li>Esta información puede consultarse usando el comando SQL <i>SHOW STATS</i>.</li>
+								</li>Por otro lado, es posible obtener el detalle de la planificación de una query (realizada en base a la información estadística anterior) mediante el comando SQL <i>EXPLAIN</i>.</li>
+								<li>Las optimizaciones que realiza Trino, basadas en estos costes calculados a partir de las estadísticas de tablas, son: Join enumeration y Join distribution selection.</li>
+							</ol>
+						</aside>
 					</section>					
 					<section>
 						<h4>Ejemplo - Comando SHOW STATS</h4>
@@ -494,6 +686,12 @@ Splits: 1 total, 1 done (100,00%)
 								</ul>
 							</li>
 						</ol>
+						<aside class="notes">
+							<ol style="font-size: 0.75em;">
+								<li><strong>Pushdown</strong>: Como parte de la estrategia de optimización, Trino puede enviar parte de las queries hacia la fuente de datos para su procesamiento. Esto incrementa el rendimiento de la query, reduce el tráfico de datos y la carga en la fuente de datos remota. Este mecanismo se llama pushdown y las partes enviadas son: Predicate (cláusula WHERE) para ayudar a filtrar filas, Projection (cláusula SELECT y otras) para filtrar qué columnas recuperar, Dereference para filtrar aún más las columnas devueltas, Aggregation (cláusula GROUP BY y otras), Join (cláusulas JOIN), Limit (cláusulas LIMIT y otras) para reducir el número de filas devueltas y Top-N similar a la anterior.</li>
+								<li>La aplicación de estas optimizaciones pushdown puede observarse en la salida del comando SQL EXPLAIN ya que los operadores correspondientes (Join, Aggregate, etc.) no aparecen en la planificación de la query ya que han sido delegados en las BBDD de origen.</li>
+							</ol>
+						</aside>
 					</section>
 					<section>
 						<img class="top framed" src="img/sql-queries.jpeg"  width="400" height="400" />
@@ -501,8 +699,8 @@ Splits: 1 total, 1 done (100,00%)
 					<section>
 						<p>¿Qué son las windows functions?</p>
 						<div  style="font-size: 0.65em;">
-							<blockquote>Realizan cálculos sobre un conjunto de registros relacionados con el actual, de forma similar a las funciones de agregación pero sin agrupar filas.</blockquote>
-							<pre><code data-trim data-noescape>
+							<blockquote>Realizan cálculos sobre un conjunto de registros relacionados con el actual, de forma similar a las funciones de agregación, pero sin agrupar filas.</blockquote>
+							<pre style="width: 60%"><code data-trim data-noescape>
 								SELECT
 									duration,
 									SUM(duration) <u>OVER</u> (ORDER BY start_time) AS running_total
@@ -510,6 +708,9 @@ Splits: 1 total, 1 done (100,00%)
 									tasks;
 							</code></pre>
 						</div>
+						<aside class="notes">
+							<p style="font-size: 0.75em;"><b>Ejemplo</b>: cálculo de la duración relativa de cada tarea frente al total.</p>
+						</aside>
 					</section>
 				</section>
 				
@@ -520,6 +721,31 @@ Splits: 1 total, 1 done (100,00%)
 						<li class="fragment" data-fragment-index="1">Dynamic filtering</li>
 						<img class="fragment top framed" data-fragment-index="1" src="img/585px-Joins_del_SQL.svg.png" style="background-color: #6DB3F2;" />
 					</ol>
+					<aside class="notes">
+						<ol style="font-size: 0.6em;">
+							<li><strong>Spill to disk</strong>
+								<p>Por defecto, las queries que exceden los límites de memoria de sesión son abortadas para asegurar que el sistema no cae. Esto puede causar que las queries con grandes requisitos de memoria no lleguen a ejecutarse nunca.</p>
+								<p>Para evitarlo, puede activarse el mecanismo de Spill to disk (rebose a disco), similar al sistema de paginación de memoria del sistema operativo, que vuelca a disco parte de la memoria (revocable) usada para ser procesada más tarde, liberando memoria para continuar.</p>
+								<p>Las queries pueden solicitar memoria revocable que no se contabiliza a efectos de alcanzar los límites de memoria de sesión.</p>
+								<p>El Spill to disk está disponible sólo para algunas operaciones concretas (join, agregaciones, order by y window functions).</p>
+								<p>El volcado a disco puede separarse por configuración en distintas unidades físicas, que son tratadas como JBOD (Just a Branch Of Drives) por lo que no es necesario ponerlas bajo control RAID.</p>
+								<p>También es posible habilitar compresión y/o encriptado.</p>
+							</li>
+							<li><strong>Dynamic filtering</strong>
+								<p>En las queries de tipo join, la tabla izquierda (tras la cláusula FROM) y la tabla derecha (tras el JOIN) son filtradas según el predicado (cláusula WHERE) y recuperadas en memoria para hacer el matching según la condición del join (cláusula ON). Cuando las tablas son grandes y el predicado no filtra suficientemente la tabla fact, esto es muy ineficiente.</p>
+								<p>Cuando se activa el Dynamic Filtering, se filtra la tabla derecha (fase #1) según el predicado y se obtienen posibles valores candidatos de las columnas usadas para el join. Estos valores se agregan como nuevas condiciones al predicado creando un nuevo filtro (filtro dinámico generado) usado para filtrar la tabla izquierda (fase #2). Esto ocurre en cada nodo worker (broadcast joins).</p>
+								<p>Adicionalmente, estas nuevas condiciones pueden ser enviadas al nodo coordinador que las agrega y redistribuye a todos los nodos workers para el filtrado de la tabla izquierda.</p>
+								<p>Ambas funcionalidades (dynamic filtering y dynamic filtering distribution) están activadas por defecto aunque pueden desactivarse usando las propiedades enable-dynamic-filtering y enable-coordinator-dynamic-filters-distribution de la configuración o sus respectivas de la sesión (enable_dynamic_filtering y enable_coordinator_dynamic_filters_distribution).</p>
+								<p>El Dynamic filtering está disponible sólo en algunos connectors (Hive[dynamic partition pruning], Memory, etc.).</p>
+								<h5>Las ventajas que se consiguen son:</h5>
+								<ul>
+									<li>Mejorar el rendimiento de las queries</li>
+									<li>Reducir el tráfico entre el Trino y las BBDD</li>
+									<li>Reducir la carga en las BBDD</li>
+								</ul>
+							</li>
+						</ol>
+					</aside>
 				</section>
 
 				
@@ -529,6 +755,23 @@ Splits: 1 total, 1 done (100,00%)
 						<li class="fragment">Resource groups</li>
 						<li class="fragment">Session properties</li>
 					</ol>
+					<aside class="notes">
+						<ol style="font-size: 0.6em;">
+							<li><strong>Resource groups</strong>
+								<p>Permite asignar límites en el uso de recursos a las queries. Se puede limitar el número de queries, la cantidad de memoria y el uso de CPU. Esto se hace definiendo distintos resources groups y cada query es asignada a uno de estos. Un resource group define límites en los recursos (propiedades) y puede contener, a su vez, otros resource groups. Sólo aquellos que no contienen elementos anidados, pueden aceptar queries.</p>
+								<p>Los resource groups son gestionados por un manager, implementado como plugin, que puede ser de dos tipos: file (configurado en fichero JSON en el nodo coordinador) ó db (configurado en BD separado MySQL, Postgresql ó Oracle que pueden ser compartidas por varios clusters Trino).</p>
+								<p>Cada query es asignada a un resource group usando un conjunto de reglas (selectors) en función del usuario, grupo del usuario, fuente (texto externo), tipo de query ó tags. Una vez asignado a un grupo, si la query incumple los límites de uso de los recursos fijados en el grupo no falla sino que es encolada para su posterior ejecución (la estrategia usada para poner en ejecución nuevamente las queries encoladas es configurable por cada resource group).</p>
+								<p>Un ejemplo típico del uso de estos resource groups es la de crear dos grupos para priorizar las queries con ejecución programadas sobre las queries interactivas.</p>
+							</li>
+							<li><strong>Session properties</strong>
+								<p>Las propiedades de sesión pueden controlar el comportamiento de Trino como: el uso de recursos, activar funcionalidades y características de queries.</p>
+								<p>Algunas propiedades son aplicables a todo el sistema, mientras que otras lo pueden ser a cada catálogo por separado.</p>
+								<p>Pueden ser modificables por aquellos usuarios autorizados (ver autorización).</p>
+								<p>Las propiedades son gestionadas por managers pluggables.</p>
+								<p>El manager por defecto usa un fichero de configuración JSON con reglas en función de: usuario, grupo del usuario, fuente (texto externo), tipo de query ó tags.</p>
+							</li>
+						</ol>
+					</aside>
 				</section>
 
 				
@@ -539,6 +782,20 @@ Splits: 1 total, 1 done (100,00%)
 							<li class="fragment">Distributed sort</li>
 							<li class="fragment">Graceful shutdown</li>
 						</ol>
+						<aside class="notes">
+							<ol style="font-size: 0.70em;">
+								<li><strong>Distributed sort</strong>
+									<p>Esta funcionalidad permite al operador sort ordenar un conjunto de datos en paralelo repartiendo los datos entre múltiples nodos workers para luego realizar una última ordenación en un único worker.</p>
+									<p>Esto posibilita ordenar datos que superarían el límite de memoria de un único nodo (propiedad query.max-memory-per-node) ganando además en rendimiento.</p>
+									<p>Normalmente activado, puede activarse por configuración (distributed-sort) ó sesión (distributed_sort).</p>
+								</li>
+								<li><strong>Graceful shutdown</strong>
+									<p>Al igual que el autoregistro de los nodos workers en el nodo coordinador, via el servicio discovery, permite agregarlos dinámicamente al cluster Trino, esta funcionalidad permite apagar nodos workers sin afectar a las queries que estén en curso, dando un tiempo de gracia antes del apagado (propiedad shutdown.grace-period, 2 minutos por defecto).</p>
+									<p>Para apagar un nodo, se realiza una petición HTTP-PUT.</p>
+									<p>El apagado puede ser protegido por los mecanismos de control de acceso disponibles.</p>
+								</li>
+							</ol>
+						</aside>
 					</section>
 					<section>
 						<p>Ejemplo de apagado de nodo worker</p>
@@ -558,6 +815,24 @@ Splits: 1 total, 1 done (100,00%)
 						</li>
 						<li class="fragment">JMX</li>
 					</ol>
+					<aside class="notes">
+						<ol style="font-size: 0.6em;">
+							<li><strong>Fault-tolerant</strong>
+								<p>En el caso de que una query falle debido a causas internas (por ejemplo, falta de recursos), por defecto, debe ser relanzada manualmente.</p>
+								<p>Activando el mecanismo <i>Fault-tolerante execution</i>, Trino puede reintentar aquellas tasks fallidas ó la query entera según se configure. Las queries fallidas por errores de sintaxis o por haber sido detenidas por el usuario, no se reintentan.</p>
+								<p>La configuración de <u>reintento de queries</u> es apropiada cuando la mayoría de las queries son cortas o cuando no se disponga de un exchange manager.</p>
+								<p>Por otro lado, cuando las queries sean largas o se lancen en grandes lotes (batch), es perferible el <u>reintento por tasks</u> y se requiere el uso de un exchange manager que conserve los datos usados por los workers basado en un sistema de fichero local o en un sistema compatible S3.</p>
+								<p>En el reintento de queries, por defecto aquellas que devuelven más de 32MB de datos no se reintentan aunque este límite puede modificarse en la configuración (propiedad exchange.deduplication-buffer-size) aunque eso conlleva más consumo de memoria en el nodo coordinador. Para grandes volúmenes se recomienda usar un exchange manager basado en S3.</p>
+								<p>Es posible configurar el número de reintentos, el tiempo entre reintentos, etc. usando multitud de propiedades de configuración.</p>
+							</li>
+							<li><strong>JMX (Java Management Extensions)</strong>
+								<p>Es posible monitorizar el sistema mediante métricas accesibles via Java Management Extensions (JMX), que pueden consultarse mediante un servidor interno (propiedades de configuración jmx.rmiregistry.port y jmx.rmiserver.port) usando cualquier cliente JMX.</p>
+								<p>Existen muchas aplicaciones de monitorización que usan este sistema (jconsole, visualVM, etc.).</p>
+								<p>También es posible ver estas métricas accediendo a un catálogo que use el connector JMX.</p>
+								<p>Hay métricas de todo tipo: de la máquina java (JVM), del cluster Trino, de las queries, de las tasks, etc.</p>
+							</li>
+						</ol>
+					</aside>
 				</section>
 
 <!-- INSTALACIÓN Y CONFIGURACIÓN -->
@@ -661,6 +936,9 @@ services:
 
 							</code></pre>
 						</ol>
+						<aside class="notes">
+							<p style="font-size: 0.5em;"></p>
+						</aside>
 					</section>
 					<section>
 						<h4>Instalación docker</h4>
@@ -674,6 +952,9 @@ TRINO_INTERNAL_COMM_SHARED_SECRET=KCZZItOB+oAMHi5jH59pt4pBE
 TRINO_API_URL_PATH=aplicaciones/trino/api
 TRINO_API_PORT=9000
 						</code></pre>
+						<aside class="notes">
+							<p style="font-size: 0.5em;"></p>
+						</aside>
 					</section>
 					<section>
 						<h4>Instalación docker</h4>
@@ -757,6 +1038,9 @@ EXPOSE $TRINO_API_PORT
 
 CMD ["/docker-entrypoint.sh", "/usr/lib/trino/bin/run-trino"]
 						</code></pre>
+						<aside class="notes">
+							<p style="font-size: 0.5em;"></p>
+						</aside>
 					</section>
 					<section>
 						<h4>Instalación docker</h4>
@@ -811,6 +1095,47 @@ http-server.authentication.password.user-mapping.file=etc/user-mapping.json
 #web-ui.enabled=false
 							</code></pre>
 						</ol>
+						<aside class="notes">
+							<p style="font-size: 0.5em;">Varios niveles de autorización:</p>						
+							<ul style="font-size: 0.5em;">
+								<li>A nivel de cluster
+									<ul>
+										<li>System access control que controla el acceso a nivel global (con un todo o nada) y precede a cualquier otro nivel. Simplifica al máximo el control (por ejemplo, se puede poner todo en modo read-only con sólo poner una propiedad [access-control.name=read-only])</li>
+										<li>Usando un único fichero JSON que contiene las reglas de acceso a los recursos en todo el cluster.</li>
+										<li>En función del usuario/role/grupo, catálogo y propietario del query, se puede controlar:
+											<ul>
+												<li>la visibilidad del catálogo/schema/tabla.</li>
+												<li>el acceso (all,none) al catálogo/schema.</li>
+												<li>el acceso a tablas/columnas (select, insert, update, delete, ownership, grant_select).</li>
+												<li>Filtrar filas de tablas usando expresiones en función del usuario/role/grupo/catalog/schema/tabla.<br/>
+												Ejemplo: que un usuario sólo pueda ver sus pedidos dentro de una tabla de pedidos.</li>
+												<li>Enmascarar columnas usando expresiones con operadores, en función del usuario/role/grupo/catalog/schema/tabla.<br/>
+												Ejemplo: en función del usuario se puede mostrar todos los dígitos de la tarjeta de crédito excepto los 4 últimos que se reemplazan por ‘X’ (usuarios avanzados) y bloquear el acceso al resto de usuarios</li>
+												<li>el acceso a propiedades del sistema/catálogo (write)</li>
+												<li>el acceso a las queries (view, execute y kill)</li>
+												<li>la impersonación de otros usuarios</li>
+												<li>la información del sistema (read,write)</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+								<li>A nivel de catálogo
+									<ul>
+										<li>Un fichero JSON por catálogo con las reglas a aplicar.<br/>
+										En función del usuario/grupo/schema/tabla/columna y expresiones de filtros, se puede controlar:
+											<ul>
+												<li>A quién se considera propietario del schema.</li>
+												<li>Privilegios de acceso a una tabla: SELECT, INSERT, DELETE, UPDATE, OWNERSHIP, GRANT_SELECT.</li>
+												<li>Filtrar filas de tablas usando expresiones en función del usuario/grupo/schema/tabla.<br/>
+												Ejemplo: que un usuario sólo pueda ver sus pedidos dentro de una tabla de pedidos.</li>
+												<li>Enmascarar columnas usando expresiones con operadores, en función del usuario/grupo/schema/tabla.<br/>
+												Ejemplo: en función del usuario se puede mostrar todos los dígitos de la tarjeta de crédito excepto los 4 últimos que se reemplazan por ‘X’ (usuarios avanzados) y bloquear el acceso al resto de usuarios</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</aside>
 					</section>
 					<section>
 						<h4>Configuración Trino</h4>
@@ -831,6 +1156,9 @@ security.config-file=/etc/trino/cluster-auth-rules.test1.json
 # Releemos cada segundo el fichero de reglas para aplicar cambios
 security.refresh-period=1s
 						</code></pre>
+						<aside class="notes">
+							<p style="font-size: 0.5em;"></p>
+						</aside>
 					</section>
 					<section>
 						<h4>Configuración Trino</h4>
@@ -962,6 +1290,9 @@ security.refresh-period=1s
     ]
 }
 						</code></pre>
+						<aside class="notes">
+							<p style="font-size: 0.5em;"></p>
+						</aside>
 					</section>
 					<section>
 						<h4>Configuración Trino</h4>
@@ -973,6 +1304,9 @@ group-provider.name=file
 file.group-file=/etc/trino/grupos-usuarios.txt
 file.refresh-period=10s
 						</code></pre>
+						<aside class="notes">
+							<p style="font-size: 0.5em;"></p>
+						</aside>
 					</section>
 					<section>
 						<h4>Configuración Trino</h4>
@@ -982,6 +1316,9 @@ admin:ext-jnunper@canarias.es
 lectores:ext-jnunper@canarias.es,etormed,ext-jgilcar@canarias.es,ext-mhergark@canarias.es
 escritores: etormed
 						</code></pre>
+						<aside class="notes">
+							<p style="font-size: 0.5em;"></p>
+						</aside>
 					</section>
 					<section>
 						<h4>Configuración Trino</h4>
@@ -1003,6 +1340,9 @@ ldap.user-bind-pattern=uid=${USER},o=gobiernodecanarias,c=es:uid=${USER},o=canar
 #ldap.bind-dn=uid=trino-ldap,o=applications,o=gobiernodecanarias,c=es
 #ldap.bind-password=****
 						</code></pre>
+						<aside class="notes">
+							<p style="font-size: 0.5em;"></p>
+						</aside>
 					</section>
 					<section>
 						<h4>Configuración Trino</h4>
@@ -1022,6 +1362,9 @@ ldap.user-bind-pattern=uid=${USER},o=gobiernodecanarias,c=es:uid=${USER},o=canar
     }
   ]
 }						</code></pre>
+						<aside class="notes">
+							<p style="font-size: 0.5em;"></p>
+						</aside>
 					</section>
 					<section>
 						<h4>Configuración Trino</h4>
@@ -1031,6 +1374,9 @@ ldap.user-bind-pattern=uid=${USER},o=gobiernodecanarias,c=es:uid=${USER},o=canar
 # https://trino.io/docs/current/installation/deployment.html#log-levels
 io.trino=INFO
 io.trino.plugin.password=DEBUG						</code></pre>
+						<aside class="notes">
+							<p style="font-size: 0.5em;"></p>
+						</aside>
 					</section>
 					<section>
 						<h4>Configuración Trino</h4>
@@ -1040,6 +1386,9 @@ miguel:$2y$10$RkOdWEkLHjaAds7Kzp0C3eWNHVzoawLolnmnvdbsxQUB0ACjQzeAO
 user_ro:$2y$10$.VJ6yKEuWo38NXK.bd6/J.ML5.sfEFA1B.0jNoyMw/VsQzoLAjNc6
 user_rw:$2y$10$5us6RyTDd/ynlOt.IX0R1eHu9laNqGtOfBfUGm.ZYMgUty6QdBKIO
 						</code></pre>
+						<aside class="notes">
+							<p style="font-size: 0.5em;"></p>
+						</aside>
 					</section>
 				</section>
 
@@ -1060,6 +1409,9 @@ DB_ACTINIO_USER=extjnunper
 DB_ACTINIO_PASSWORD=****
 							</code></pre>
 						</ol>
+						<aside class="notes">
+							<p style="font-size: 0.5em;"></p>
+						</aside>
 					</section>
 					<section>
 						<h4>Configuración Trino</h4>
@@ -1075,6 +1427,9 @@ connection-password=${ENV:DB_ACTINIO_PASSWORD}
 						<pre style="font-size: 0.39em; width: 100%"><code data-trim data-noescape style="font-size: 0.6em;">
 connector.name=blackhole
 						</code></pre>
+						<aside class="notes">
+							<p style="font-size: 0.5em;"></p>
+						</aside>
 					</section>
 					<section>
 						<h4>Configuración Trino</h4>
@@ -1146,6 +1501,9 @@ connection-password=${ENV:DB_FERMIO_PASSWORD}
     ]
 }
 						</code></pre>
+						<aside class="notes">
+							<p style="font-size: 0.5em;"></p>
+						</aside>
 					</section>
 					<section>
 						<h4>Configuración Trino</h4>
@@ -1170,6 +1528,9 @@ connection-password=${ENV:DB_OISTAC_PASSWORD}
 connector.name=tpcds
 tpcds.splits-per-node=4
 						</code></pre>
+						<aside class="notes">
+							<p style="font-size: 0.5em;"></p>
+						</aside>
 					</section>
 				</section>
 
@@ -1188,6 +1549,9 @@ discovery.uri=http://mi-trino-coordinator:8080
 internal-communication.shared-secret=KCZZItOB+oAMHi5jH59pt4pBE0l4zQc
 						</code></pre>
 					</ol>
+					<aside class="notes">
+						<p style="font-size: 0.5em;"></p>
+					</aside>
 				</section>
 
 				<section>
@@ -1212,6 +1576,9 @@ internal-communication.shared-secret=KCZZItOB+oAMHi5jH59pt4pBE0l4zQc
 							<li class="fragment">Para instalar en el Pentaho Kettle, copiar el fichero trino-jdbc-373.jar descargado a subdirectorio lib.</li>
 						</ol>
 					</ol>
+					<aside class="notes">
+						<p style="font-size: 0.5em;"></p>
+					</aside>
 				</section>
 
 <!-- PRUEBAS REALIZADAS -->
@@ -1259,6 +1626,21 @@ http-server.authentication.password.user-mapping.file=etc/user-mapping.json
 }
 						</code></pre>
 					</ol>
+					<aside class="notes">
+						<ol style="font-size: 0.65em;">
+							<li><strong>Regla #1:</strong>
+								<p>Se bloquea el acceso al usuario "etormed".<br/>
+								La página del Web-UI no permite entrar aunque no da error.<br/>
+								El cliente Trino-CLI deja entrar pero cualquier comando es rechazado con el mensaje <i>Error running command: Authentication failed: Principal is not allowed</i>.</p>
+							</li>
+							<li><strong>Regla #2:</strong>
+								<p>A los usuarios logeados que empiezan por "ext-" se les agrega el dominio "@canarias.es" y se les permite el acceso.</p>
+							</li>
+							<li><strong>Regla #3:</strong>
+								<p>Se permite el acceso a cualquier otro usuario.</p>
+							</li>
+						</ol>
+					</aside>
 				</section>
 
 				<section>
@@ -1305,6 +1687,36 @@ security.refresh-period=1s
 }
 						</code></pre>
 					</ol>
+					<aside class="notes">
+						<ol style="font-size: 0.5em;">
+							<li><strong>Autorefresco:</strong>
+								<p>La propiedad <i>security.refresh-period</i> indica cada cuánto tiempo se debe recargar el fichero indicado por la propiedad <i>security.config-file</i>.</p>
+							</li>
+							<li><strong>Recordatorio:</strong>
+								<p>Si no se especifica ninguna regla de catálogo, todos los usuarios tienen acceso a todos los catálogos.</p>
+								<p>Cuando un usuario ejecuta una query, adquiere su propiedad<br/>
+								Si no se especifica ninguna regla de query, todos los usuarios tienen todos los permisos de query.</p>
+							</li>
+							<li><strong>Regla #1:</strong>
+								<p>A los usuarios <i>ext-jnunper@canarias</i> y <i>etormed</i> se les concede permisos de sólo lectura al catálogo <i>actinio</i>.</p>
+							</li>
+							<li><strong>Regla #2:</strong>
+								<p>Se prohibe acceder al catálogo <i>actinio</i> a cualquier otro usuario. Se permite el acceso al resto de catálogos a todos los usuarios.</p>
+							</li>
+							<li><strong>Regla #3:</strong>
+								<p>Se permite el acceso al resto de catálogos a todos los usuarios.</p>
+							</li>
+							<li><strong>Regla #4:</strong>
+								<p>El usuario <i>ext-jnunper@canarias</i> puede ejecutar queries propias (además de ver y matar) y puede ver y matar cualquier query ajena.</p>
+							</li>
+							<li><strong>Regla #5:</strong>
+								<p>El usuario <i>etormed</i> puede ejecutar queries propias (además de ver y matar) y matar cualquier query de cualquier usuario.</p>
+							</li>
+							<li><strong>Regla #6:</strong>
+								<p>El resto de usuarios puede ejecutar queries propias (además de ver y matar).</p>
+							</li>
+						</ol>
+					</aside>
 				</section>
 
 				<section>
@@ -1317,6 +1729,9 @@ security.refresh-period=1s
 web-ui.enabled=false
 						</code></pre>
 					</ol>
+					<aside class="notes">
+						<p style="font-size: 0.75em;">Cuando se desactiva, se muestra una página con la frase "Web Interface is Disabled".</p>
+					</aside>
 				</section>
 
 				<section>
@@ -1361,6 +1776,15 @@ security.config-file=/etc/trino/cluster-auth-rules.test1.json
 }
 						</code></pre>
 					</ol>
+					<aside class="notes">
+						<ol style="font-size: 0.5em;"><b>Reglas:</b>
+							<li>Se controla el acceso del usuario <i>ext-jnunper@canarias</i> a la tabla <i>dat_colcan20100131_v01</i> del esquema <i>e59021a_rd</i> del catálogo <i>fermio</i> y a sus columnas.</li>
+							<li>Se filtra (excluye) cualquier registro que no cumpla la expresión de filtro <i>luid=501 or luid=502 or luid=503</i>.</li>
+							<li>Se bloquea el acceso a la columna <i>stid</i>. Cualquier query que devuelva esta columna fallará dando un error (propiedad <i>hide-inaccessible-columns</i> a false en el fichero <i>config.properties</i>).</li>
+							<li>Se enmascara la columna <i>uuid</i>, cambiando los últimos 12 dígitos por un asterisco.</li>
+							<li>Se conceden todos los permisos sobre todas las tablas de todos los catálogos a todos los usuarios.</li>
+						</ol>
+					</aside>
 				</section>
 
 				<section>
@@ -1368,6 +1792,8 @@ security.config-file=/etc/trino/cluster-auth-rules.test1.json
 						<h4>Pruebas</h4>
 						<p style="font-size: 0.5em;">Acceso desde Apache Hop a Trino</p>
 						<img class="top framed" src="img/pantallazos/p012.png" style="width: 80%" />
+						<aside class="notes">
+						</aside>
 					</section>
 					<section>
 						<img class="top framed" src="img/pantallazos/p014.png" />
@@ -1382,6 +1808,8 @@ security.config-file=/etc/trino/cluster-auth-rules.test1.json
 						<h4>Pruebas</h4>
 						<p style="font-size: 0.5em;">Acceso desde Kettle 8.3 a Trino</p>
 						<img class="top framed" src="img/pantallazos/p015.png" style="width: 80%" />
+						<aside class="notes">
+						</aside>
 					</section>
 					<section>
 						<img class="top framed" src="img/pantallazos/p016.png" />
@@ -1395,12 +1823,16 @@ security.config-file=/etc/trino/cluster-auth-rules.test1.json
 					<h4>Pruebas</h4>
 					<p style="font-size: 0.5em;">Trino-CLI</p>
 					<img class="top framed" src="img/pantallazos/p018.png" style="width: 80%" />
+					<aside class="notes">
+					</aside>
 				</section>
 
 				<section>
 					<h4>Pruebas</h4>
 					<p style="font-size: 0.5em;">Sencillo formulario web para realizar consultas contra Trino</p>
 					<img class="top framed" src="img/pantallazos/p008.png" style="width: 80%" />
+					<aside class="notes">
+					</aside>
 				</section>
 
 <!-- CONCLUSIONES -->
@@ -1428,6 +1860,25 @@ security.config-file=/etc/trino/cluster-auth-rules.test1.json
 						<li class="fragment">Queries optimizadas</li>
 						<li class="fragment">...y muchas promesas!!</li>
 					</ul>
+					<aside class="notes">
+						<ul style="font-size: 0.5em;">
+							<li>Proyecto Opensource respaldado por la compañía Starburst, muy activo.<br/>
+							Software muy probado, desarrollado en java con gran calidad.<br/>
+							Se puede extender mediante SPI (Service Provider Interface) Java, con ayuda de la documentación existente.</li>
+							<li>Permite proteger TODAS las fuentes de datos para TODAS la líneas de producción del Istac, frente a soluciones parciales (por ejemplo, filtrado de filas en SAS Viya, TOAD, etc.) y de forma uniforme (frente a encriptado en cada BDD, etc.).<br/>
+							Se centraliza el control de acceso a todos los datos independientemente de dónde se localicen.<br/>
+							Ya no hace falta tener cuentas de usuarios en todas las BBDD, bastará con las de servicio.<br/>
+							Revocar el acceso será mucho más rápido y sencillo.<br/>
+							Un SQL uniforme y potente para todas las BBDD. Incluyendo BBDD NoSQL (columnares como calidad del aire??).</li>
+							<li>El control de accesos es muy flexible y permite emplear expresiones regulares, tener en cuenta el software cliente, determinar qué mecanismo de autenticación es admisible para cada usuario, etc.<br/>
+							Incluye mapeado de usuarios y grupos (para aplicación de permisos por roles).</li>
+							<li>Con los grupos de recursos, es posible dividir en queries críticas y menos críticas.</li>
+							<li>En futuro próximo es posible que se quiera trabajar más el análisis de datos (OLAP) para lograr una mejor calidad del dato.<br/>
+							La información sobre rendimiento se puede usar para mejorar las queries</li>
+							<li><a href="https://cinco-ap01p.gobiernodecanarias.net/aplicaciones/trino/api/query">Trino-API</a></li>
+							<li>A falta de pruebas reales (múltiples servidores), el producto promete un rendimiento excelente en consultas sobre grandes volúmenes de datos.</li>
+						</ul>
+					</aside>
 				</section>
 				
 				<section>
@@ -1443,6 +1894,15 @@ security.config-file=/etc/trino/cluster-auth-rules.test1.json
 							</ul>
 						</li>
 					</ol>
+					<aside class="notes">
+						<ul style="font-size: 0.75em;">
+							<li>No se puede almacenar/administrar queries para reutilizarlas, aunque pueden lanzarse scripts SQL almacenadas en disco.</li>
+							<li>No hay una herramienta para la gestión de usuarios y grupos.</li>
+							<li>El control de acceso fino (file) ha de hacerse con ficheros json, no hay una herramienta visual que ayude.</li>
+							<li>No soporta comentarios (como campos extra) en los ficheros JSON de configuración, lo que sería de mucha utilidad.</li>
+							<li>No hay imagen docker oficial separada para nodos coordinadores y workers.</li>
+						</ul>
+					</aside>
 				</section>
 				
 				<section>
@@ -1458,6 +1918,19 @@ security.config-file=/etc/trino/cluster-auth-rules.test1.json
 							</ul>
 						</li>
 					</ol>
+					<aside class="notes">
+						<ul style="font-size: 0.75em;">
+							<li>Trino se focaliza en queries ad-hoc interactivas comunes en el análisis de los datos (OLAP).<br/>
+							No dispone de mecanismos de cacheado de resultados (similares a memCache...)</li>
+							<li>Trino está diseñado para realizar computación distribuída en una red de servidores. No está diseñado para ejecutarse en un único servidor.</li>
+							<li>El Trino no guarda información de auditoría, sólo un histórico de queries que se pierde al reinicar el servidor.<br/>
+							Al usar sus propias credenciales de acceso a los datos, se pierde la posibilidad de auditar los accesos de los usuarios.<br/>
+							Quizás con algún plugin o herramienta externa.</li>
+							<li>Aunque no es una configuración que pueda ser útil, el arranque no es muy lento pero sí lo suficiente como para desaconsejar su uso como contenedor docker short-lived.</li>
+							<li>Configurar la memoria para un rendimiento óptimo en todo momento puede ser muy complicado.<br/>
+							Las distintas estrategias de optimización usadas por el Trino deberían poder lidiar con la mayoría de las situaciones.</li>
+						</ul>
+					</aside>
 				</section>
 				
 				<section>
@@ -1475,6 +1948,19 @@ security.config-file=/etc/trino/cluster-auth-rules.test1.json
 							</ul>
 						</li>
 					</ol>
+					<aside class="notes">
+						<ul style="font-size: 0.75em;">
+							<li>Las versiones de Oracle en uso ahora mismo son 11g por lo que no se ha podido usar Trino sobre ellas. Las versiones >=12 son soportadas.</li>
+							<li>Sólo soporta ANSI-SQL con algunas extensiones propias.<br/>
+							Aunque las especifidades puedan ser gestionadas por los connectors, las sentencias SQL deben ser compatibles ANSI (no se puede usar extensiones específicas de la DBMS).<br/>
+							Por tanto, algunas queries no podrán usarse o requerir ser modificadas.</li>
+							<li>El Web UI no soporta CAS/SSO. Eso dificultará una eventual publicación en la red del Gobierno.</li>
+							<li>A veces el mapeado de tipos entre los soportados por la BDD y el Trino es complicada. Por ejemplo, los tipos geometric, numeric sin dimensión… del PostgreSQL.</li>
+							<li>El histórico de queries se conserva en memoria (puede consultarse usando el connector SYSTEM) y se pierde al reiniciar el cluster.</li>
+							<li>Se ha detectado un problema con los campos de tipo fecha cuando se usa el cliente JDBC para acceder desde Apache Hop y Pentaho PDI. Después de varias pruebas, se confirma que es un problema del Apache Hop y Pentaho PDI que confunden el tipo fecha con el datetimestamp.</li>
+							<li>Aunque es posible agregar o quitar nodos workers en caliente, no sucede lo mismo con los catálogos y se requiere reiniciar el cluster.</li>
+						</ul>
+					</aside>
 				</section>
 				
 				<section>
@@ -1487,25 +1973,30 @@ security.config-file=/etc/trino/cluster-auth-rules.test1.json
 						<li></li>
 						<li></li>
 					</ol>
+					<aside class="notes">
+						<div style="font-size: 0.75em;">
+							<p>Después de todo lo dicho, cada uno que saque sus propias conclusiones.</p>
+							<p>Particularmente, me parece un producto de calidad. Pero su interés dependerá de si la planificación a futuro dará o no un peso importante al análisis de datos en los trabajos y objetivos del Istac.</p>
+						</div>
+					</aside>
 				</section>
 				
 				<section>
 					<h4>Referencias</h4>
-					<ol>
-						<li>https://en.wikipedia.org/wiki/Presto_(SQL_query_engine)</li>
-						<li>https://blog.starburst.io/intro-to-trino-for-the-trinewbie</li>
-						<li>https://docs.starburst.io/data-consumer/clients/odbc.html</li>
-						<li>https://www.sas.com/content/dam/SAS/support/en/sas-global-forum-proceedings/2019/3358-2019.pdf</li>
-						<li>https://www.matillion.com/resources/blog/the-types-of-databases-with-examples</li>
-						<li>https://www.javatpoint.com/types-of-databases</li>
-						<li>https://trino.io/docs/current/develop/client-protocol.html</li>
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
+					<ol style="font-size: 0.6em;">
+						<li><a href="https://trino.io/">https://trino.io/</a></li>
+						<li><a href="https://trino.io/docs/current/">https://trino.io/docs/current/</a></li>
+						<li><a href="https://www.starburst.io/">https://www.starburst.io/</a></li>
+						<li><a href="https://en.wikipedia.org/wiki/Presto_(SQL_query_engine)">https://en.wikipedia.org/wiki/Presto_(SQL_query_engine)</a></li>
+						<li><a href="https://blog.starburst.io/intro-to-trino-for-the-trinewbie">https://blog.starburst.io/intro-to-trino-for-the-trinewbie</a></li>
+						<li><a href="https://docs.starburst.io/data-consumer/clients/odbc.html">https://docs.starburst.io/data-consumer/clients/odbc.html</a></li>
+						<li><a href="https://www.sas.com/content/dam/SAS/support/en/sas-global-forum-proceedings/2019/3358-2019.pdf">https://www.sas.com/content/dam/SAS/support/en/sas-global-forum-proceedings/2019/3358-2019.pdf</a></li>
+						<li><a href="https://www.matillion.com/resources/blog/the-types-of-databases-with-examples">https://www.matillion.com/resources/blog/the-types-of-databases-with-examples</a></li>
+						<li><a href="https://www.javatpoint.com/types-of-databases">https://www.javatpoint.com/types-of-databases</a></li>
+						<li><a href="https://trino.io/docs/current/develop/client-protocol.html">https://trino.io/docs/current/develop/client-protocol.html</a></li>
 					</ol>
+					<aside class="notes">
+					</aside>
 				</section>
 
 <!-- FINAL -->
@@ -1534,7 +2025,7 @@ security.config-file=/etc/trino/cluster-auth-rules.test1.json
 				hash: true,
 
 				// Learn about plugins: https://revealjs.com/plugins/
-				plugins: [ RevealMarkdown, RevealHighlight ]
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
 			});
 		</script>
 
